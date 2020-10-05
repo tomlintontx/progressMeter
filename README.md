@@ -15,3 +15,6 @@ Install is quick and easy:
 
 ## Built On
 This plugin was built on Sisense version **L8.2.1** and tested on Sisense Windows version **8.2.4**
+
+## Known Issues
+1. Will break the Calendar Heatmap that comes installed with Sisense due to a different D3 version. A ticket has been submitted to Sisense for them to fix.
