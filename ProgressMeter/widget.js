@@ -11,7 +11,9 @@ prism.registerWidget("ProgressMeter", {
     style: {
         /* object structure for styling use, available to be changed
         using the design panel*/
-        color: "black"
+        color: "black",
+        prefix: "",
+        postfix: ""
     },
     data: {
         selection: [],
@@ -62,7 +64,15 @@ prism.registerWidget("ProgressMeter", {
                 visibility: true,
             },
             {
-                name: "Goal",
+                name: "Denominator",
+                metadata: {
+                    types: ['measures'],
+                    maxitems: 1,
+                },
+                visibility: true,
+            },
+            {
+                name: "Secondary Value",
                 metadata: {
                     types: ['measures'],
                     maxitems: 1,
@@ -88,7 +98,7 @@ prism.registerWidget("ProgressMeter", {
         // builds a jaql query from the given widget
         buildQuery: function (widget) {
 
-            if (widget.metadata.panel("Metric").items.length === 0 || widget.metadata.panel("Goal").items.length === 0) {
+            if (widget.metadata.panel("Metric").items.length === 0 || widget.metadata.panel("Secondary Value").items.length === 0 || widget.metadata.panel("Denominator").items.length === 0) {
                 var query = {
                     datasource: widget.datasource,
                     format: "json",
@@ -111,8 +121,12 @@ prism.registerWidget("ProgressMeter", {
                 var curPanel = widget.metadata.panel("Metric").items[0];
                 query.metadata.push(curPanel);
 
+                //Denominator Attr
+                var denominator = widget.metadata.panel("Denominator").items[0];
+                query.metadata.push(denominator)
+
                 //Target Attr
-                var targetMetric = widget.metadata.panel("Goal").items[0];
+                var targetMetric = widget.metadata.panel("Secondary Value").items[0];
                 query.metadata.push(targetMetric)
 
                 // gather the filters, don't need to change
@@ -147,7 +161,7 @@ prism.registerWidget("ProgressMeter", {
         var config = {
             color: widget.queryResult.$$rows[0][0].color,
             ele: ele,
-            maxNum: widget.queryResult.$$rows[0][1].data
+            denominator: widget.queryResult.$$rows[0][1].data
         }
 
         if(widget.queryResult.$$rows.length > 0) {

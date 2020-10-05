@@ -6,7 +6,9 @@ function putMeOnTheScreen(widget, event, config) {
     const tagName = "tomtom-" + Math.floor(Math.random() * 1000).toString();
     myDiv.setAttribute("style","width: 99%; height: 99%; margin: 0 auto");
     myDiv.setAttribute("id",tagName);
-    var myGoal = widget.queryResult.$$rows[0][1].text;
+    var secondaryValue = widget.queryResult.$$rows[0][2].text;
+    var postfix_val = widget.style.postfix;
+    var prefix_val = widget.style.prefix;
 
     function radialProgress(selector) {
         const parent = d3.select(selector)
@@ -89,7 +91,7 @@ function putMeOnTheScreen(widget, event, config) {
                 })
                 goalLabel.transition().duration(transitionDuration).tween('bla', function() {
                     return function(t) {
-                        goalLabel.text('Goal: ' + myGoal)
+                        goalLabel.text(prefix_val + secondaryValue + postfix_val)
                     }
                     })
                 value = progressPercent
@@ -99,7 +101,7 @@ function putMeOnTheScreen(widget, event, config) {
     }
       
     let chart = radialProgress('#' + tagName)
-    let widgetResults = Math.round((widget.queryResult.$$rows[0][0].data/widget.queryResult.$$rows[0][1].data) * 100)
+    let widgetResults = Math.round((widget.queryResult.$$rows[0][0].data/config.denominator) * 100)
     chart.update(widgetResults)
     
 }

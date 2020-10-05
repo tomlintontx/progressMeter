@@ -2,7 +2,22 @@
 
     <div class="settings-pane-host">
         <div class="pane-row">
-        
+            <div class="checker-pane-holder">
+                <div class="ew-p-header">Secondary Value</div>
+            </div>
+            <div>
+                <label>Prefix</label>
+                <input type="text" id="prefixValue" placeholder="prefix"
+                    value="{{model.prefix}}"></input>
+            </div>
+            <div>
+                <label>Postfix</label>
+                <input type="text" id="postfixValue" placeholder="postfix"
+                    value="{{model.postfix}}"></input>
+            </div>
+            <div>
+                <button class="btn" data-ng-click="getValues()"> Update </button>
+            </div>
         </div>
     </div>
 </div>
