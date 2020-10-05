@@ -3,7 +3,7 @@ function putMeOnTheScreen(widget, event, config) {
     var width = ele.width();
     var height = ele.height();
     var myDiv = ele[0];
-    const tagName = "tomtom-123456";
+    const tagName = "tomtom-" + Math.floor(Math.random() * 1000).toString();
     myDiv.setAttribute("style","width: 99%; height: 99%; margin: 0 auto");
     myDiv.setAttribute("id",tagName);
     var myGoal = widget.queryResult.$$rows[0][1].text;
