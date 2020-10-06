@@ -12,6 +12,12 @@ Install is quick and easy:
 1. Upload the ProgressMeter folder to the plugins folder of your Sisense installation
 1. Wait for the plugins pod to restart and done!
 
+## Use
+
+- **Metric**: The main number that will be shown in the center of the circle. Will also be used as the numerator when calculating the percent of the circle to fill.
+- **Denominator**: The denominator when calculating the percent of the circle to fill.
+- **Secondary Value**: The secondary number that displays under the main number.
+- **Prefix/Postfix**: Text to be added at the beginning or end of the secondary value. Examples would be something like "Goal: " or " total units" 
 
 ## Built On
 This plugin was built on Sisense version **L8.2.1** and tested on Sisense Windows version **8.2.4**
